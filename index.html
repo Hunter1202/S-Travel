@@ -9,11 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="logo.png" rel="shortcut icon"/>
     <style>
-        h3 {
-            color: #004AAD;
+        #sliderWrapper {
+            -webkit-overflow-scrolling: touch;
         }
+
+        #slider {
+            will-change: transform;
+        }
+
         #slider > div {
             width: 25%; /* 4 items on large screens */
+            flex-shrink: 0;
         }
 
         @media (max-width: 1024px) {
@@ -673,58 +679,106 @@
 </script>
 
 <script>
-    for (let i = 1; i <= 3; i++) {
-        const slider = document.getElementById('slider' + i);
-        const sliderWrapper = document.getElementById('sliderWrapper' + i);
-        const prevBtn = document.getElementById('prevBtn' + i);
-        const nextBtn = document.getElementById('nextBtn' + i);
-        let scrollAmount = 0;
-        let slidesToShow = 4;
-        let slideWidth;
+    const slider = document.getElementById('slider');
+    const sliderWrapper = document.getElementById('sliderWrapper');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let scrollAmount = 0;
+    let slidesToShow = 4;
+    let slideWidth;
+    let startX;
+    let scrollLeft;
+    let isDown = false;
 
-        function updateSliderDimensions() {
-            const sliderWidth = sliderWrapper.getBoundingClientRect().width;
-            if (window.innerWidth <= 1024) {
-                slidesToShow = 2;
-            } else {
-                slidesToShow = 4;
-            }
-            slideWidth = sliderWidth / slidesToShow;
-            slider.querySelectorAll('.flex-shrink-0').forEach(item => {
-                item.style.width = `${slideWidth}px`;
-            });
+    function updateSliderDimensions() {
+        const sliderWidth = sliderWrapper.getBoundingClientRect().width;
+        if (window.innerWidth <= 1024) {
+            slidesToShow = 2;
+        } else {
+            slidesToShow = 4;
         }
-
-        function updateSliderPosition() {
-            slider.style.transform = `translateX(-${scrollAmount}px)`;
-        }
-
-        function handleResize() {
-            updateSliderDimensions();
-            scrollAmount = 0;
-            updateSliderPosition();
-        }
-
-        prevBtn.addEventListener('click', () => {
-            scrollAmount = Math.max(scrollAmount - slideWidth, 0);
-            updateSliderPosition();
+        slideWidth = sliderWidth / slidesToShow;
+        slider.querySelectorAll('.flex-shrink-0').forEach(item => {
+            item.style.width = `${slideWidth}px`;
         });
-
-        nextBtn.addEventListener('click', () => {
-            const maxScroll = slider.scrollWidth - sliderWrapper.clientWidth;
-            scrollAmount = Math.min(scrollAmount + slideWidth, maxScroll);
-            updateSliderPosition();
-        });
-
-        // Add smooth transition to the slider
-        slider.style.transition = 'transform 0.5s ease-in-out';
-
-        // Initial setup
-        updateSliderDimensions();
-
-        // Add resize event listener
-        window.addEventListener('resize', handleResize);
     }
+
+    function updateSliderPosition() {
+        slider.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    function handleResize() {
+        updateSliderDimensions();
+        scrollAmount = 0;
+        updateSliderPosition();
+    }
+
+    function handlePrev() {
+        scrollAmount = Math.max(scrollAmount - slideWidth, 0);
+        updateSliderPosition();
+    }
+
+    function handleNext() {
+        const maxScroll = slider.scrollWidth - sliderWrapper.clientWidth;
+        scrollAmount = Math.min(scrollAmount + slideWidth, maxScroll);
+        updateSliderPosition();
+    }
+
+    prevBtn.addEventListener('click', handlePrev);
+    nextBtn.addEventListener('click', handleNext);
+
+    // Touch events
+    slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = scrollAmount;
+    });
+
+    slider.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollAmount = scrollLeft - walk;
+        updateSliderPosition();
+    });
+
+    // Mouse events (for desktop)
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = scrollAmount;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollAmount = scrollLeft - walk;
+        updateSliderPosition();
+    });
+
+    // Add smooth transition to the slider
+    slider.style.transition = 'transform 0.3s ease-out';
+
+    // Initial setup
+    updateSliderDimensions();
+
+    // Add resize event listener
+    window.addEventListener('resize', handleResize);
 </script>
 
 <script>
