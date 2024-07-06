@@ -8,23 +8,48 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="logo.png" rel="shortcut icon"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <style>
-        #sliderWrapper {
-            -webkit-overflow-scrolling: touch;
+        .splide__arrow {
+            background: white;
+            opacity: 1;
+            height: 3em;
+            width: 3em;
         }
 
-        #slider {
-            will-change: transform;
+        .splide__arrow svg {
+            fill: #4a5568;
+            height: 1em;
+            width: 1em;
         }
 
-        #slider > div {
-            width: 25%; /* 4 items on large screens */
-            flex-shrink: 0;
+        .splide__arrow:hover {
+            opacity: 1;
+            background: #e2e8f0;
         }
 
-        @media (max-width: 1024px) {
-            #slider > div {
-                width: 50% !important; /* 2 items on smaller screens */
+        .splide__arrow:disabled {
+            opacity: 0.3;
+        }
+
+        /* Default position (e.g., outside) */
+        .splide__arrows .splide__arrow--prev {
+            left: -3em;
+        }
+        .splide__arrows .splide__arrow--next {
+            right: -3em;
+        }
+
+        /* Position for smaller screens */
+        @media (max-width: 768px) {
+            .splide__arrows .splide__arrow--prev {
+                left: 1em;
+                top: 50%;
+            }
+            .splide__arrows .splide__arrow--next {
+                right: 1em;
+                top: 50%;
             }
         }
     </style>
@@ -57,7 +82,7 @@
 
         <!-- Bottom row for logo and navigation -->
         <div class="flex items-center" style="padding-left: 10%">
-            <a href="admin.html">
+            <a href="index.html">
                 <div class="flex items-center mr-20">
                     <img src="logo.png" alt="Logo" class="h-10 w-auto md:h-16 mr-2">
                     <span style="font-family: 'Pacifico', cursive; color: #004AAD"
@@ -65,15 +90,6 @@
                 </div>
             </a>
             <div class="flex space-x-4 md:hidden">
-<!--                <a href="#" class="text-gray-800 hover:text-red-500 flex items-center text-lg">-->
-<!--                    <i class="fa-solid fa-heart"></i>-->
-<!--                </a>-->
-<!--                <a href="#" class="text-gray-800 hover:text-red-500 flex items-center text-lg">-->
-<!--                    <i class="fa-solid fa-cart-shopping"></i>-->
-<!--                </a>-->
-<!--                <a href="tel:0214 3678 999" class="text-gray-800 hover:text-red-500 flex items-center text-lg">-->
-<!--                    <i class="fa-solid fa-phone"></i>-->
-<!--                </a>-->
                 <button id="mobile-menu-button" class="text-gray-800 hover:text-red-500 flex items-center text-lg">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -84,6 +100,7 @@
                     <li><a href="#Service" class="text-gray-800 hover:text-red-500 text-xl">Dịch vụ</a></li>
                     <li><a href="#" class="text-gray-800 hover:text-red-500 text-xl">Giới thiệu</a></li>
                     <li><a href="#Blog" class="text-gray-800 hover:text-red-500 text-xl">Blog</a></li>
+                    <li><a href="policy_and_term.html" class="text-gray-800 hover:text-red-500 text-xl">Chính sách</a></li>
                 </ul>
             </nav>
         </div>
@@ -117,14 +134,15 @@
                         <i class="fa-solid fa-cart-shopping"></i>‎ Booking</a></li>
                     <li><a href="tel:0214 3678 999" class="block text-gray-800 hover:text-red-500 text-lg py-2">
                         <i class="fa-solid fa-phone"></i>‎ Liên hệ</a></li>
+                    <li><a href="#Blog" class="block text-gray-800 hover:text-red-500 text-lg py-2">
+                        <i class="fa-solid fa-shield"></i>‎ Chính sách</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
 
-
-<!-- Hero Section -->
+<!-- Query section -->
 <div class="pt-36 md:pt-30">
     <div class="hero bg-cover bg-center text-white text-center p-10 md:p-60" style="background-image: url('bg.png');">
         <div class="hero-content max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -138,241 +156,243 @@
     </div>
 </div>
 
-
+<!-- Main content -->
 <div class="px-10">
-    <!--    Destination-->
-    <div id="Destination" style="padding-top: 100px;"></div>
-    <div class="container mx-auto px-4 py-8" style="padding-top: 100px;">
-        <div class="flex justify-center items-center">
-            <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
-                <span class="relative z-10 whitespace-nowrap">TOUR ẤN TƯỢNG</span>
-                <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-36 bg-green-500"></span>
-            </h2>
-        </div>
-        <div class="relative overflow-hidden" id="sliderWrapper1">
-            <div class="flex" id="slider1">
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
-                                <ul>
-                                    <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
-                                    <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
-                                    <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
-                                </ul>
-                                <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
-                                <ul>
-                                    <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
-                                    <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
-                                    <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
-                                </ul>
-                                <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
-                                <ul>
-                                    <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
-                                    <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
-                                    <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
-                                </ul>
-                                <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
-                                <ul>
-                                    <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
-                                    <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
-                                    <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
-                                </ul>
-                                <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
-                                <ul>
-                                    <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
-                                    <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
-                                    <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
-                                </ul>
-                                <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
-                            </div>
-                        </div>
-                    </a>
+
+<!--    Destionation section-->
+    <div id="Destination" class="pt-36 md:pt-30"></div>
+    <div class="splide-container">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-center items-center">
+                <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
+                    <span class="relative z-10 whitespace-nowrap">TOUR ẤN TƯỢNG</span>
+                    <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-36 bg-green-500"></span>
+                </h2>
+            </div>
+            <div class="splide" id="slider1" role="group" aria-label="Travel Slider 1">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://huonganhtourist.vn/wp-content/uploads/2023/03/kinh-nghiem-di-ha-khau-tu-a-z-1.jpg" alt="tour-image" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
+                                        <ul>
+                                            <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
+                                            <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
+                                            <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://nguonluc.com.vn/uploads/images/2024/05/25/nlntv-anh-1-1716570733.jpg" alt="tour-image" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
+                                        <ul>
+                                            <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
+                                            <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
+                                            <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://static.baovanhoa.vn/zoom/1000/Portals/0/laithuyha/1_1981_%20Phung%20Hoang%20c%20trn.jpg" alt="tour-image" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
+                                        <ul>
+                                            <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
+                                            <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
+                                            <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://www.kynghidongduong.vn/userfiles/images/tour-nuoc-ngoai/ha-khau-binh-bien/lau-trieu-duong-kien-thuy-du-lich-ha-khau-binh-bien-kien-thuy-kynghidongduong-005.jpg" alt="tour-image" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
+                                        <ul>
+                                            <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
+                                            <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
+                                            <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://checkintravel.vn/uploads/0000/46/2023/06/28/binh-bien-hong-ha-trung-quoc1.jpg" alt="tour-image" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Tour Ấn Tượng Vân Nam</h3>
+                                        <ul>
+                                            <li><i class="fa-regular fa-clock"></i> Thời gian: 4 ngày 3 đêm</li>
+                                            <li><i class="fa-solid fa-car"></i> Phương tiện: Ô tô</li>
+                                            <li><i class="fa-regular fa-star"></i> Tiêu chuẩn: 4 ⭐</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">Chỉ từ: 4.690.000 vnđ/ khách</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="prevBtn1">
-                <i class="fas fa-chevron-left text-gray-600"></i>
-            </button>
-            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="nextBtn1">
-                <i class="fas fa-chevron-right text-gray-600"></i>
-            </button>
         </div>
     </div>
 
-    <!--    Travel Service-->
-    <div id="Service" style="padding-top: 100px;"></div>
-    <div class="container mx-auto px-4 py-8" style="padding-top: 100px; ">
-        <div class="flex justify-center items-center">
-            <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
-                <span class="relative z-10">DỊCH VỤ</span>
-                <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-24 bg-green-500"></span>
-            </h2>
-        </div>
-        <div class="relative overflow-hidden" id="sliderWrapper2">
-            <div class="flex" id="slider2">
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
-                                <p class="text-gray-600 text-sm">05 APR 2024</p>
+    <div class="text-center pt-20 md:pt-20">
+        <h1 style="font-family: 'Pacifico', cursive; color: #004AAD"
+            class="text-5xl font-large text-gray-800 whitespace-nowrap">S-Travel </h1>
+        <h1 class="text-5xl italic mb-4" style="color: #004AAD;">Plan your trip
+        </h1>
+    </div>
+
+<!--    Service section-->
+    <div id="Service" class="pt-36 md:pt-30"></div>
+    <div class="splide-container">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-center items-center">
+                <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
+                    <span class="relative z-10">DỊCH VỤ</span>
+                    <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-24 bg-green-500"></span>
+                </h2>
+            </div>
+            <div class="splide" id="slider2" role="group" aria-label="Travel Slider 2">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
+                                        <p class="text-gray-600 text-sm">05 APR 2024</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://owa.bestprice.vn/images/articles/uploads/du-lich-sapa-thang-nao-dep-nhat-5e835f67e2f14.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch trong nước</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://owa.bestprice.vn/images/articles/uploads/du-lich-sapa-thang-nao-dep-nhat-5e835f67e2f14.jpg" alt="Du lịch trong nước" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch trong nước</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://static.baovanhoa.vn/zoom/1000/Portals/0/laithuyha/1_1981_%20Phung%20Hoang%20c%20trn.jpg" alt="Du lịch nước ngoài" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch nước ngoài</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://static.baovanhoa.vn/zoom/1000/Portals/0/laithuyha/1_1981_%20Phung%20Hoang%20c%20trn.jpg" alt="Du lịch nước ngoài" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch nước ngoài</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-van-hoa.jpg" alt="Du lịch văn hóa" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch văn hóa</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-van-hoa.jpg" alt="Du lịch văn hóa" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch văn hóa</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-sinh-thai.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch sinh thái</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-sinh-thai.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch sinh thái</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/d1-1715829650138.jpg" alt="Du lịch nghỉ dưỡng" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch nghỉ dưỡng</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/d1-1715829650138.jpg" alt="Du lịch nghỉ dưỡng" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch nghỉ dưỡng</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/h1-1715830675923.jpg" alt="Du lịch thể thao" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch thể thao</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/h1-1715830675923.jpg" alt="Du lịch thể thao" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch thể thao</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCRJV_rwGxOrxr_l00k5qNjlC0KCMj1D61cw&s" alt="Team Building" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Team Building</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCRJV_rwGxOrxr_l00k5qNjlC0KCMj1D61cw&s" alt="Team Building" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Team Building</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
+                                        <p class="text-gray-600 text-sm">05 APR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
-                                <p class="text-gray-600 text-sm">05 APR 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5A58fODptkwk0F73swFY4PYslPA0GVCwo6Q&s" alt="Team Building" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Xem thêm</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
-                            </div>
-                        </div>
-                    </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5A58fODptkwk0F73swFY4PYslPA0GVCwo6Q&s" alt="Team Building" class="w-full h-48 object-cover">
+                                        <div class="p-4">
+                                            <h3 class="font-bold text-lg mb-2">Xem thêm</h3>
+                                            <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="prevBtn2">
-                <i class="fas fa-chevron-left text-gray-600"></i>
-            </button>
-            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="nextBtn2">
-                <i class="fas fa-chevron-right text-gray-600"></i>
-            </button>
         </div>
     </div>
 
@@ -413,7 +433,7 @@
             </div>
         </div>
 
-        <!-- The Intrepid difference button -->
+        <!-- About us -->
         <div class="text-center mt-8">
             <button class="bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow hover:bg-gray-100">
                 Về chúng tôi
@@ -421,144 +441,144 @@
         </div>
     </div>
 
-    <div id="Blog" style="padding-top: 100px;"></div>
-    <div class="container mx-auto px-4 py-8" style="padding-top: 100px; padding-bottom: 100px;">
-        <div class="flex justify-center items-center">
-            <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
-                <span class="relative z-10">DỊCH VỤ</span>
-                <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-24 bg-green-500"></span>
-            </h2>
-        </div>
-        <div class="relative overflow-hidden" id="sliderWrapper3">
-            <div class="flex" id="slider3">
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
-                                <p class="text-gray-600 text-sm">05 APR 2024</p>
+<!--        Blog section-->
+    <div id="Blog" class="pt-36 md:pt-30"></div>
+    <div class="splide-container" style="padding-bottom: 100px;">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-center items-center">
+                <h2 class="relative inline-block text-center text-2xl mb-4 md:text-3xl mb-5 text-center">
+                    <span class="relative z-10">BLOG</span>
+                    <span class="absolute top-10 left-1/2 transform -translate-x-1/2 h-1 w-12 bg-green-500"></span>
+                </h2>
+            </div>
+            <div class="splide" id="slider3" role="group" aria-label="Travel Slider 3">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
+                                        <p class="text-gray-600 text-sm">05 APR 2024</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://owa.bestprice.vn/images/articles/uploads/du-lich-sapa-thang-nao-dep-nhat-5e835f67e2f14.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch trong nước</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://owa.bestprice.vn/images/articles/uploads/du-lich-sapa-thang-nao-dep-nhat-5e835f67e2f14.jpg" alt="Du lịch trong nước" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch trong nước</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://static.baovanhoa.vn/zoom/1000/Portals/0/laithuyha/1_1981_%20Phung%20Hoang%20c%20trn.jpg" alt="Du lịch nước ngoài" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch nước ngoài</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://static.baovanhoa.vn/zoom/1000/Portals/0/laithuyha/1_1981_%20Phung%20Hoang%20c%20trn.jpg" alt="Du lịch nước ngoài" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch nước ngoài</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-van-hoa.jpg" alt="Du lịch văn hóa" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch văn hóa</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-van-hoa.jpg" alt="Du lịch văn hóa" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch văn hóa</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-sinh-thai.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch sinh thái</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-sinh-thai.jpg" alt="Du lịch sinh thái" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch sinh thái</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/d1-1715829650138.jpg" alt="Du lịch nghỉ dưỡng" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch nghỉ dưỡng</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/d1-1715829650138.jpg" alt="Du lịch nghỉ dưỡng" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch nghỉ dưỡng</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/h1-1715830675923.jpg" alt="Du lịch thể thao" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch thể thao</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/h1-1715830675923.jpg" alt="Du lịch thể thao" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch thể thao</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCRJV_rwGxOrxr_l00k5qNjlC0KCMj1D61cw&s" alt="Team Building" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Team Building</h3>
+                                        <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCRJV_rwGxOrxr_l00k5qNjlC0KCMj1D61cw&s" alt="Team Building" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Team Building</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <a href="tour.html" class="block">
+                                    <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
+                                        <p class="text-gray-600 text-sm">05 APR 2024</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
-                                <p class="text-gray-600 text-sm">05 APR 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex-shrink-0 w-full md:w-1/4 px-2">
-                    <a href="tour.html">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5A58fODptkwk0F73swFY4PYslPA0GVCwo6Q&s" alt="Team Building" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold text-lg mb-2">Xem thêm</h3>
-                                <p class="text-gray-600 text-sm">13 MAR 2024</p>
-                            </div>
-                        </div>
-                    </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="tour.html" class="block">
+                                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5A58fODptkwk0F73swFY4PYslPA0GVCwo6Q&s" alt="Team Building" class="w-full h-48 object-cover">
+                                        <div class="p-4">
+                                            <h3 class="font-bold text-lg mb-2">Xem thêm</h3>
+                                            <p class="text-gray-600 text-sm">13 MAR 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="prevBtn3">
-                <i class="fas fa-chevron-left text-gray-600"></i>
-            </button>
-            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" id="nextBtn3">
-                <i class="fas fa-chevron-right text-gray-600"></i>
-            </button>
         </div>
     </div>
-
-    <!-- Live Chat -->
-    <div class="fixed bottom-4 right-4">
-        <button class="bg-blue-500 text-white p-2 rounded-full shadow-lg">Zalo</button>
-        <button class="bg-blue-500 text-white p-2 rounded-full shadow-lg">Facebook</button>
-    </div>
 </div>
+
+<!-- Live Chat -->
+<div class="fixed bottom-4 right-4 z-50">
+    <button class="bg-blue-500 text-white p-2 rounded-full shadow-lg">Zalo</button>
+    <button class="bg-blue-500 text-white p-2 rounded-full shadow-lg">Facebook</button>
+</div>
+
 </body>
 
 <!-- Footer -->
@@ -663,122 +683,60 @@
             mobileMenu.classList.toggle('hidden');
         }
 
+        function hideMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
         function handleResize() {
             if (window.innerWidth >= 768) { // 768px is the default breakpoint for md in Tailwind
-                mobileMenu.classList.add('hidden');
+                hideMobileMenu();
             }
         }
 
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        // Hide mobile menu on page load
+        hideMobileMenu();
+
+        mobileMenuButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        // Hide mobile menu when clicking anywhere on the document
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                hideMobileMenu();
+            }
+        });
+
         window.addEventListener('resize', handleResize);
 
         // Initial check on page load
         handleResize();
     });
-
 </script>
 
 <script>
-    const slider = document.getElementById('slider');
-    const sliderWrapper = document.getElementById('sliderWrapper');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let scrollAmount = 0;
-    let slidesToShow = 4;
-    let slideWidth;
-    let startX;
-    let scrollLeft;
-    let isDown = false;
+    document.addEventListener('DOMContentLoaded', function() {
+        const sliderOptions = {
+            perPage: 4,
+            perMove: 1,
+            gap: '1rem',
+            breakpoints: {
+                1024: {
+                    perPage: 2,
+                },
+                640: {
+                    perPage: 2,
+                },
+            },
+            pagination: false,
+            arrows: true,
+        };
 
-    function updateSliderDimensions() {
-        const sliderWidth = sliderWrapper.getBoundingClientRect().width;
-        if (window.innerWidth <= 1024) {
-            slidesToShow = 2;
-        } else {
-            slidesToShow = 4;
+        for (let i = 1; i <= 3; i++) {
+            new Splide('#slider' + i, sliderOptions).mount();
         }
-        slideWidth = sliderWidth / slidesToShow;
-        slider.querySelectorAll('.flex-shrink-0').forEach(item => {
-            item.style.width = `${slideWidth}px`;
-        });
-    }
-
-    function updateSliderPosition() {
-        slider.style.transform = `translateX(-${scrollAmount}px)`;
-    }
-
-    function handleResize() {
-        updateSliderDimensions();
-        scrollAmount = 0;
-        updateSliderPosition();
-    }
-
-    function handlePrev() {
-        scrollAmount = Math.max(scrollAmount - slideWidth, 0);
-        updateSliderPosition();
-    }
-
-    function handleNext() {
-        const maxScroll = slider.scrollWidth - sliderWrapper.clientWidth;
-        scrollAmount = Math.min(scrollAmount + slideWidth, maxScroll);
-        updateSliderPosition();
-    }
-
-    prevBtn.addEventListener('click', handlePrev);
-    nextBtn.addEventListener('click', handleNext);
-
-    // Touch events
-    slider.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - slider.offsetLeft;
-        scrollLeft = scrollAmount;
     });
-
-    slider.addEventListener('touchend', () => {
-        isDown = false;
-    });
-
-    slider.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.touches[0].pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollAmount = scrollLeft - walk;
-        updateSliderPosition();
-    });
-
-    // Mouse events (for desktop)
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = scrollAmount;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-    });
-
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollAmount = scrollLeft - walk;
-        updateSliderPosition();
-    });
-
-    // Add smooth transition to the slider
-    slider.style.transition = 'transform 0.3s ease-out';
-
-    // Initial setup
-    updateSliderDimensions();
-
-    // Add resize event listener
-    window.addEventListener('resize', handleResize);
 </script>
 
 <script>
