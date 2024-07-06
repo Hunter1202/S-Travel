@@ -1,0 +1,126 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        console.log("Splide loaded:", typeof Splide !== 'undefined');
+    </script>
+    <style>
+        .splide__arrow {
+            background: white;
+            opacity: 1;
+            height: 3em;
+            width: 3em;
+        }
+
+        .splide__arrow svg {
+            fill: #4a5568;
+            height: 1em;
+            width: 1em;
+        }
+
+        .splide__arrow:hover {
+            opacity: 1;
+            background: #e2e8f0;
+        }
+
+        .splide__arrow:disabled {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mx-auto px-4 py-8">
+    <div class="splide" role="group" aria-label="Travel Slider">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Du lịch a</h3>
+                            <p class="text-gray-600 text-sm">05 APR 2024</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Du lịch b</h3>
+                            <p class="text-gray-600 text-sm">05 APR 2024</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Du lịch c</h3>
+                            <p class="text-gray-600 text-sm">05 APR 2024</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Du lịch d</h3>
+                            <p class="text-gray-600 text-sm">05 APR 2024</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/01/du-lich-gia-dinh.jpg" alt="Du lịch gia đình" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Du lịch gia đình</h3>
+                            <p class="text-gray-600 text-sm">05 APR 2024</p>
+                        </div>
+                    </div>
+                </li>
+                <!-- More slides here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM loaded");
+        var splide = new Splide('.splide', {
+            perPage: 4,
+            perMove: 1,
+            gap: '1rem',
+            breakpoints: {
+                1024: {
+                    perPage: 2,
+                },
+                640: {
+                    perPage: 2,
+                },
+            },
+            pagination: false,
+            arrows: true,
+        });
+
+        console.log("Splide instance created");
+
+        splide.on('mounted', function () {
+            console.log("Splide mounted");
+        });
+
+        splide.mount();
+    });
+</script>
+
+</body>
+</html>
